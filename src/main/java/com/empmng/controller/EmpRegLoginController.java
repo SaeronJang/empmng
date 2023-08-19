@@ -34,7 +34,6 @@ public class EmpRegLoginController {
         model.addAttribute("empRegDto", new EmpRegDto());
         return "employee/employeeRegisterForm";
     }
-
     @PostMapping(value = "/register")
     public String empRegisterPost(@Valid EmpRegDto empRegDto,
                                   Model model) {
@@ -73,7 +72,7 @@ public class EmpRegLoginController {
     /** MASTER 계정 생성용(임시) */
     @GetMapping(value = "/master")
     public String masterTest(Model model){
-        model.addAttribute("employeeRegisterDto", new EmpRegDto());
+        model.addAttribute("empRegDto", new EmpRegDto());
         return "fragments/header";
     }
 
