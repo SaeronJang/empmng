@@ -1,11 +1,9 @@
 package com.empmng.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -18,32 +16,34 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "roleSet")
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "employee")
-public class Employee extends BaseEntity {
+public class Employee extends BaseEntity implements UserDetails {
     //  implements UserDetails 삭제
 
     /** 테이블 칼럼 */
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long empNum; //사번
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String empNum; //사번
 
     @Column(name = "name")
-    private String empName;
+    private String empName; //성명
 
-    private Date birthday;
+    private Date birthday; //생년월일
 
-    private String address;
+    private String address; //주소
 
-    private String cellphone;
+    private String cellphone; //연락처
 
-    private String email;
+    private String email; //이메일
 
     private String team; //소속
 
-    @Column(name = "joblevel")
     private String jobLevel; //직급
 
     private String duty; //직책
@@ -52,7 +52,12 @@ public class Employee extends BaseEntity {
 
     private Date resignDate; //퇴사일
 
+    private String password; //패스워드
 
+    // [230828 핵심]
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
 
     /**
@@ -74,6 +79,41 @@ public class Employee extends BaseEntity {
     }
 
 
+    /** UserDetails Override */
+    // 권한목록 리턴
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
 
+    // 사번(id)리턴
+    @Override
+    public String getUsername() {
+        return this.empNum;
+    }
 
+    // 계정 만료 유무 리턴
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    // 계정 잠금 유무 리턴
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    // 패스워드 만료 유무 리턴
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    // 계정 활성화 유무 리턴
+    @Override
+    public boolean isEnabled() {
+        if(resignDate != null) return false;
+        else return true;
+    }
 }

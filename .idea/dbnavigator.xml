@@ -18,7 +18,11 @@
 select * from emp_key;
 
 
-delete column password from employee;]]></console>
+select * from employee;
+insert into employee (emp_num, address, birthday, cellphone, duty, email, name, joblevel, join_date, team) values 
+                     (15070115, '부천시', 890119, '010-6734-1425', 'IT마스터', 'ys@saeron.com','장윤서', '대리', 150701, 'IT팀');
+
+alter table employee drop column password;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -29,6 +33,7 @@ delete column password from employee;]]></console>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="732f799b-1012-47e5-bbc1-bb725cf8f4ab" dataset="empmng.emp_key" active-filter-id="" />
+    <filter-actions connection-id="732f799b-1012-47e5-bbc1-bb725cf8f4ab" dataset="empmng.employee" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -46,7 +51,9 @@ delete column password from employee;]]></console>
     <filters />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -94,7 +101,7 @@ delete column password from employee;]]></console>
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
