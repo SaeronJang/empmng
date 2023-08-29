@@ -46,115 +46,42 @@
 
     <!-- 리스트 start -->
     <div class="overflow-scroll" style="height: 600px;">
-      <table class="table">
+      <table class="table table-hover table-sm">
 
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
+            <th scope="col">No.</th>
+            <th scope="col">사번</th>
+            <th scope="col">성명</th>
+            <th scope="col">생년월일</th>
+            <th scope="col">주소</th>
+            <th scope="col">연락처</th>
+            <th scope="col">이메일</th>
+            <th scope="col">소속</th>
+            <th scope="col">직급</th>
+            <th scope="col">직책</th>
+            <th scope="col">입사일</th>
+            <th scope="col">퇴사일</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
+          <tr th:each="empInfoDto, status:${empInfoDtoList}">
+            <td th:text="${status.index}"></td>
+            <td th:text="${empInfoDto.empNum}"></td>
+            <td th:text="${empInfoDto.empName}"></td>
+            <td th:text="${empInfoDto.birthday}"></td>
+            <td th:text="${empInfoDto.address}"></td>
+            <td th:text="${empInfoDto.cellphone}"></td>
+            <td th:text="${empInfoDto.email}"></td>
+            <td th:text="${empInfoDto.team}"></td>
+            <td th:text="${empInfoDto.jobLevel}"></td>
+            <td th:text="${empInfoDto.duty}"></td>
+            <td th:text="${empInfoDto.joinDate}"></td>
+            <td th:text="${empInfoDto.resignDate}"></td>
+
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr><tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-          </tr>
+
 
         </tbody>
 
